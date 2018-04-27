@@ -1,0 +1,24 @@
+.AddItem {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+
+  &-input {
+    border: 1px solid $lightGrey;
+    border-radius: 5px 0 0 5px;
+    max-width: 300px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  &-button {
+    background: $white;
+    border: 1px solid $lightGrey;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+
+    &:active {
+      background: $lightGrey;
+    }
+  }
+}
