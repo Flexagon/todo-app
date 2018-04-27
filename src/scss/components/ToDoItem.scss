@@ -1,0 +1,14 @@
+.ToDoItem {
+  background: $lightGrey;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+
+  &:nth-child(even) {
+    background: $white;
+  }
+
+  &-remove {
+    cursor: pointer;
+  }
+}
