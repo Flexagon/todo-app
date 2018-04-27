@@ -1,3 +1,22 @@
+@import './consts';
+@import './components/App';
+@import './components/AddItem';
+@import './components/ToDoList';
+@import './components/ToDoItem';
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  transition: .3s;
+}
+
 body {
-  background: #000;
+  margin: 0;
+}
+
+input,
+button {
+  &:focus,
+  &:active {
+    outline: none;
+  }
 }
