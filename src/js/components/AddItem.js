@@ -1,34 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class AddItem extends Component {
-  constructor(props) {
-    super(props);
+const AddItem = ({ onInputChange, pushToArray, inputValue }) => {
+  const inputChange = e => onInputChange(e.target.value);
+  const onAddItem = () => pushToArray(inputValue);
 
-    this.state = { inputValue: '' };
-  }
+  return (
+    <div className="AddItem">
+      <input
+        className="AddItem-input"
+        type="text"
+        value={inputValue}
+        onChange={inputChange}
+      />
+      <button className="AddItem-button" onClick={onAddItem}>Add ToDo</button>
+    </div>
+  );
+};
 
-  inputChange = (e) => {
-    this.setState({ inputValue: e.target.value });
-  }
+AddItem.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  pushToArray: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired,
+};
 
-  onAddItem = (e) => {
-    const { pushToArray } = this.props;
-
-    this.setState({ inputValue: '' });
-    pushToArray(this.state.inputValue);
-  };
-
-  render() {
-    return (
-      <div className="AddItem">
-        <input
-          className="AddItem-input"
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.inputChange}
-        />
-        <button className="AddItem-button" onClick={this.onAddItem}>Add ToDo</button>
-      </div>
-    );
-  }
-}
+export default AddItem;

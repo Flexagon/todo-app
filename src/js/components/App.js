@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
+import DATA from '../data';
 import AddItem from './AddItem';
 import ToDoList from './ToDoList';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    toDoArray: DATA,
+    inputValue: '',
+  };
 
-    const toDoArray = [
-      { title: 'First Todo' },
-    ];
-
-    this.state = { toDoArray };
-  }
+  onInputChange = value => this.setState({ inputValue: value });
 
   pushToArray = (title) => {
     const { toDoArray } = this.state;
 
     if (title !== '') toDoArray.push({ title });
-    this.setState({ toDoArray });
+    this.setState({ toDoArray, inputValue: '' });
   }
 
   removeFromArray = (title) => {
@@ -27,10 +25,19 @@ export default class App extends Component {
   }
 
   render() {
+    const { toDoArray, inputValue } = this.state;
+
     return (
       <div className="App">
-        <AddItem pushToArray={this.pushToArray} />
-        <ToDoList toDoArray={this.state.toDoArray} removeFromArray={this.removeFromArray} />
+        <AddItem
+          pushToArray={this.pushToArray}
+          onInputChange={this.onInputChange}
+          inputValue={inputValue}
+        />
+        <ToDoList
+          toDoArray={toDoArray}
+          removeFromArray={this.removeFromArray}
+        />
       </div>
     );
   }
